@@ -3,14 +3,39 @@ import { drawChromeBoiAtCoords, toggleCycling, resize } from './canvasHelpers.js
 
 
 export default class ChromeBoisDomain extends Component {
+  // constructor(){
+  //   super()
+  //   this.state = {x: 0, y: 0 }
+  // }
   
   handleMouseMove = (event) => {
+    // this.setState({x: event.screenX, y : event.screenY})
+    // console.log(this.state.x,this.state.y)
+    //let x = event.screenX
+   // let y = event.screenY
+    drawChromeBoiAtCoords(event.clientX, event.clientY)
+  }
+
+  handleKeyDown = (event) => {
+    console.log(event.key)
+    if (event.key === 'a')
+    { return resize('+')}
+    else if(event.key === 's'){
+      return resize('-')
+    }
+    else{
+      return
+    }
+  }
+
+    
+
     /* TODO: This method should capture the `x` and `y` coordinates of the mouse
      * from the event and use them to invoke the `drawChromeBoiAtCoords`
      * function that has been provided and is already imported
      * (`drawChromeBoiAtCoords` expects two arguments, an x and a y coordinate)
      */
-  }
+  
   
   /* TODO: Create an event handler which, when fired, invokes the provided
    * `toggleCycling` function with no arguments. Don't forget the click event
@@ -28,6 +53,8 @@ export default class ChromeBoisDomain extends Component {
     return (
       <canvas 
         onMouseMove={this.handleMouseMove}
+        onClick ={() =>{toggleCycling()}}
+        onKeyDown={this.handleKeyDown}
         width='900'
         height='600'
         tabIndex="0">
